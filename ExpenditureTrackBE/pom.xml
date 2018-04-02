@@ -3,7 +3,6 @@
   <groupId>com.et.be</groupId>
   <artifactId>expendituretrackbe</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -14,14 +13,7 @@
           <release>9</release>
         </configuration>
       </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.0.0</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-        </configuration>
-      </plugin>
-    </plugins>
+      </plugins>
   </build>
   <dependencies>
 		<dependency>
@@ -49,5 +41,15 @@
 			<artifactId>spring-web</artifactId>
 			<version>5.0.4.RELEASE</version>
 		</dependency>
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.5</version>
+        </dependency>
 	</dependencies>
 </project>
