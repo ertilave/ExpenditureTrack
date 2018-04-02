@@ -161,5 +161,13 @@ public class YkbExtract extends Extract {
 	    this.statements.sort(new StatementComparator());
 	    
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(Util.toJson(this));
+		System.out.println("YKBExtract toString.");
+		return builder.toString();
+	}
 
 }
