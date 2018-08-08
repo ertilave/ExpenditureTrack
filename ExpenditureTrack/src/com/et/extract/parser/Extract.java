@@ -12,6 +12,7 @@ public abstract class Extract {
 	public LocalDate extractDate;
 	public ArrayList<Statement> statements;
 	public BigDecimal payment;
+	private String extractFileByte;
 	
 	public Extract() {
 		this.cards = new ArrayList<CreditCard>();
@@ -39,5 +40,13 @@ public abstract class Extract {
 	public abstract void printExtract();
 	
 	public abstract void printExtractGroupByCompany();
+
+	public String getExtractFileByte() {
+		return extractFileByte;
+	}
+
+	public void setExtractFileByte(String extractFileByte) {
+		this.extractFileByte = extractFileByte;
+	}
 		
 }

@@ -2,11 +2,14 @@ package com.et.be.demo;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.annotation.MultipartConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +33,21 @@ public class HelloRestOfTheWorld {
                             String.format(template, name));
     }
     
+    @Autowired
+    MongoTemplate mongoTemplate;
+    
     @RequestMapping(value = "/upload")
     public String uploadFile(@RequestParam("uploadedFile") MultipartFile uploadedFileRef) throws IOException{
+    	    	
     	// Get name of uploaded file.
     	// String fileName = uploadedFileRef.getOriginalFilename();
     	InputStream fileContent = uploadedFileRef.getInputStream();
+    	
+    	byte[] imageBytes = new byte[(int)uploadedFileRef.getSize()];
+    	fileContent.read(imageBytes, 0, imageBytes.length);
+    	
+    	String imageStr = Base64.getEncoder().encodeToString(imageBytes);
+    	
     	System.out.println("Upload ok.");
     	
 		Properties props = new Properties();        
@@ -44,6 +57,7 @@ public class HelloRestOfTheWorld {
         String pdfText="";
 		try {
 			pdfText = PdfParser.getPdfContent(fileContent);
+			fileContent.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,6 +65,7 @@ public class HelloRestOfTheWorld {
 		Extract extract = null;
 		try {
 			extract = ExtractFactory.getExtract(props, pdfText);
+			extract.setExtractFileByte(imageStr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

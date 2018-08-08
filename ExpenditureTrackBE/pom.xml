@@ -51,10 +51,18 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.5</version>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-mongodb</artifactId>
+    <version>2.0.6.RELEASE</version>
+</dependency>
+        
         <dependency>
-			<groupId>com.et.main</groupId>
-			<artifactId>expendituretrack</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
- </dependencies>
+        	<groupId>com.et.main</groupId>
+        	<artifactId>expendituretrack</artifactId>
+        	<version>0.0.3-SNAPSHOT</version>
+        </dependency>
+  </dependencies>
 </project>
